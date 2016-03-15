@@ -5,9 +5,10 @@
         Aplikasi Absen seminar PHP Indonesia
     </description>
     <author email="info@dadanh.com" href="http://dadanh.com">
-        Apache Cordova Team
+        Kerendi Developers
     </author>
     <content src="index.html" />
+    <gap:plugin name="cordova-plugin-barcode-scanner2" source="npm" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

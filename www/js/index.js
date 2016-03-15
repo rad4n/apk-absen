@@ -52,78 +52,72 @@ var app = {
     },
 
     scan: function() {
-      var scan_button = document.getElementById('scan');
-      cordova.plugins.barcodeScanner.scan(
-          function (result) {
-              $.ajax({
-                 method: "GET",
-                 url: "http://www.event.phpindonesia.or.id/index.php?r=attending/setAttendance",
-                 data: { hash: result.text },
-                 dataType: 'json',
-               })
-               .done(function( msg ) {
-                   if(msg.message=="Already Scan"){
-                       var ja = "Peserta ini Sudah di Absen";
-                    }
-                  else { var ja = "Absen berhasil dilakukan";}
+     // var scan_button = document.getElementById('scan');
+      // cordova.plugins.barcodeScanner.scan(
+      //     function (result) {
+      //         $.ajax({
+      //            method: "GET",
+      //            url: "http://www.event.phpindonesia.or.id/index.php?r=attending/setAttendance",
+      //            data: {hash: result.text},
+      //            dataType: 'json',
+      //          })
+      //          .done(function(msg){
+      //              if(msg.message=="Already Scan"){
+      //                  var ja = "Peserta ini Sudah di Absen";
+      //               }
+      //             else { var ja = "Absen berhasil dilakukan";}
 
-                     var alerthaha = "<div data-role='header'><h2>" + ja + "</h2></div><div data-role='main' class='ui-content' id='biodata'> nama : " + msg.fullname + "</br> Profesi : " + msg.job_id + "<br/> Gender : " + msg.gender + "</div> <img width='30%' style='float:right; margin:5px;' src='http://res.cloudinary.com/okaprinarjaya/image/upload/c_fill,h_180,w_180/v1/phpindonesia/production/"+ msg.photo +"'/></div>";
-                      //setelah dapat langsung scan lgi
-                      scan_button.click();
-                      //$("#info").html(alerthaha);
-                      //$( "#info").popup('open');
-               })  
-               .fail(function() {
-                   alert( "tidak bisa ajax" );
-               });
-          }, 
-          function (error) {
-              alert("Scanning failed: " + error);
-          }
-       );
+      //                var alerthaha = "<div data-role='header'><h2>" + ja + "</h2></div><div data-role='main' class='ui-content' id='biodata'> nama : " + msg.fullname + "</br> Profesi : " + msg.job_id + "<br/> Gender : " + msg.gender + "</div> <img width='30%' style='float:right; margin:5px;' src='http://res.cloudinary.com/okaprinarjaya/image/upload/c_fill,h_180,w_180/v1/phpindonesia/production/"+ msg.photo +"'/></div>";
+      //                 //setelah dapat langsung scan lgi
+      //                 //scan_button.click();
+      //                 $("#info").html(alerthaha);
+      //                 $( "#info").popup('open');
+      //          })  
+      //          .fail(function() {
+      //              alert( "tidak bisa ajax" );
+      //          });
+      //     }, 
+      //     function (error) {
+      //         alert("Scanning failed: " + error);
+      //     }
+      //  );
         // console.log('scanning');
         
-        // var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-        // var scan_button = document.getElementById('scan');
-        // scanner.scan( function (result) { 
+        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+        var scan_button = document.getElementById('scan');
+        scanner.scan( function (result) { 
 
-        //     $.ajax({
-        //        method: "GET",
-        //        url: "http://www.event.phpindonesia.or.id/index.php?r=attending/setAttendance",
-        //        data: { hash: result.text },
-        //        dataType: 'json',
-        //      })
-        //      .done(function( msg ) {
-        //          if(msg.message=="Already Scan"){
-        //              var ja = "Peserta ini Sudah di Absen";
-        //           }
-        //         else { var ja = "Absen berhasil dilakukan";}
+            $.ajax({
+               method: "GET",
+               url: "http://www.event.phpindonesia.or.id/index.php/attending/setAttendance?",
+               data: { hash: result.text },
+               dataType: 'json',
+             })
+             .done(function( msg ) {
+                 if(msg.message=="Already Scan"){
+                     var ja = "Peserta ini Sudah di Absen";
+                  }
+                else { var ja = "Absen berhasil dilakukan";}
 
-        //            var alerthaha = "<div data-role='header'><h2>" + ja + "</h2></div><div data-role='main' class='ui-content' id='biodata'> nama : " + msg.fullname + "</br> Profesi : " + msg.job_id + "<br/> Gender : " + msg.gender + "</div> <img width='30%' style='float:right; margin:5px;' src='http://res.cloudinary.com/okaprinarjaya/image/upload/c_fill,h_180,w_180/v1/phpindonesia/production/"+ msg.photo +"'/></div>";
-        //             //setelah dapat langsung scan lgi
-        //             scan_button.click();
-        //             //$("#info").html(alerthaha);
-        //             //$( "#info").popup('open');
-        //      })  
-        //      .fail(function() {
-        //          alert( "tidak bisa ajax" );
-        //      });
+                   // var alerthaha = "<div data-role='header'><h2>" + ja + "</h2></div><div data-role='main' class='ui-content' id='biodata'> nama : " + msg.fullname + "</br> Profesi : " + msg.job_id + "<br/> Gender : " + msg.gender + "</div> <img width='30%' style='float:left; margin:5px;' src='http://res.cloudinary.com/okaprinarjaya/image/upload/c_fill,h_180,w_180/v1/phpindonesia/production/"+ msg.photo +"'/></div>";
+                    // $("#info").html(alerthaha);
+                    // $( "#info").popup('open');
+                    var alerthaha = "<div id='biodata'> nama : " + msg.fullname + "</br> Profesi : " + msg.job_id + "<br/> Gender : " + msg.gender + "</div> <img width='30%' style='float:left; margin:5px;' src='http://res.cloudinary.com/okaprinarjaya/image/upload/c_fill,h_180,w_180/v1/phpindonesia/production/"+ msg.photo +"'/></div>";
+                    $(".modal-title").html(ja);
+                    $(".modal-body").html(alerthaha);
+                    $('#myModal').modal('show');
+             })  
+             .fail(function() {
+                 $(".modal-body").html("tidak bisa terkoneksi ke server");
+                 //$( "#info").popup('open');
+                 $('#myModal').modal('show');
+             });
 
-        // }, function (error) { 
-        //     console.log("Scanning failed: ", error); 
-        // } );
-    },
-
-    // encode: function() {
-    //     var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-
-    //     scanner.encode(scanner.Encode.TEXT_TYPE, "http://www.nhl.com", function(success) {
-    //         alert("encode success: " + success);
-    //       }, function(fail) {
-    //         alert("encoding failed: " + fail);
-    //       }
-    //     );
-
-    // }
-
+        }, function (error) { 
+            // $("#info").html(error);
+            // $( "#info").popup('open');
+            $(".modal-body").html(error);
+            $('#myModal').modal('show');
+        } );
+    }
 };

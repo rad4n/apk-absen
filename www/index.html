@@ -22,34 +22,57 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css">       
         <title>Absensi Seminar PHP Indonesia</title>
         <style type="text/css">
           #biodata{
             float:right;
+            width: 60%;
           }
+
           #info h2{
             text-align: center;
           }
         </style>
     </head>
     <body>
-        <div class="app">
-            <h1>Absensi Seminar PHP Indonesia</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+            <div class="app" data-role="main" class="ui-content">
+                <h1>Absensi Seminar PHP Indonesia</h1>
+                <div id="deviceready" class="blink">
+                    <p class="event listening">Connecting to Device</p>
+                    <p class="event received">Device is Ready</p>
+                </div>
+                <p><a href="#" class="topcoat-button ui-btn" id="scan">SCAN</a></p>
+                <p><a href="#" class="topcoat-button ui-btn" id="encode">Daftar Peserta</a></p>
+                <!-- <div data-role="popup" id="info" data-theme="e" data-overlay-theme="a"></div> -->
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"></h4>
+                      </div>
+                      <div class="modal-body">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
             </div>
-            <p><a href="#" class="topcoat-button ui-btn" id="scan">SCAN</a></p>
-            <p><a href="#" class="topcoat-button ui-btn" id="encode">Daftar Peserta</a></p>
-            <div data-role="popup" id="info" id="info" data-theme="e" data-overlay-theme="a" class="ui-content"></div>
-        </div>
-        <script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-        <script type="text/javascript" src="js/cordova.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/barcodescanner.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript">
             app.initialize();
         </script>
